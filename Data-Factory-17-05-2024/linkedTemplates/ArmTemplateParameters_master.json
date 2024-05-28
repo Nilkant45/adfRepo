@@ -21,7 +21,7 @@
 			"value": "adfsqlstorage.database.windows.net"
 		},
 		"AzureSqlDatabase1_properties_typeProperties_database": {
-			"value": "DestinationADF"
+			"value": "AdventureWorks2"
 		},
 		"AzureSqlDatabase1_properties_typeProperties_userName": {
 			"value": "Nilkant"

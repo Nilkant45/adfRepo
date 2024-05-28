@@ -29,7 +29,7 @@
 		},
 		"AzureSqlDatabase1_properties_typeProperties_database": {
 			"type": "string",
-			"defaultValue": "DestinationADF"
+			"defaultValue": "AdventureWorks2"
 		},
 		"AzureSqlDatabase1_properties_typeProperties_userName": {
 			"type": "string",
