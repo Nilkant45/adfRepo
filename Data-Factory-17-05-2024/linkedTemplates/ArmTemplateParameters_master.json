@@ -27,7 +27,7 @@
 			"value": "Nilkant"
 		},
 		"RestService1_properties_typeProperties_url": {
-			"value": "https://dummy.restapiexample.com/api/v1/employee"
+			"value": "https://jsonplaceholder.typicode.com/posts"
 		},
 		"SqlServer1_properties_typeProperties_server": {
 			"value": "DESKTOP-7DKJVD3\\SQLEXPRESS"
