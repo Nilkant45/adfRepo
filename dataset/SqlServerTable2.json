@@ -39,7 +39,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "InternationalData"
+			"table": "posts"
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
