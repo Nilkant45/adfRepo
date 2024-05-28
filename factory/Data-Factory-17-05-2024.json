@@ -1,0 +1,9 @@
+{
+	"name": "Data-Factory-17-05-2024",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "22b0bd92-aeb2-4e54-885f-8b901722bc92",
+		"tenantId": "c895ef37-d83c-4508-9e0a-d1acd40f75b5"
+	}
+}
