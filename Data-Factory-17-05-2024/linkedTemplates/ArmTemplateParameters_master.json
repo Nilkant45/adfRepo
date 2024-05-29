@@ -11,13 +11,13 @@
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
+		"Sink_connectionString": {
+			"value": ""
+		},
 		"SqlServer1_password": {
 			"value": ""
 		},
 		"SqlServer2_password": {
-			"value": ""
-		},
-		"Sink_connectionString": {
 			"value": ""
 		},
 		"RestService1_properties_typeProperties_url": {
