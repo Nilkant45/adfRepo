@@ -1,5 +1,5 @@
 {
-	"name": "AzureSqlTable1",
+	"name": "DepartmentTb",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
@@ -9,27 +9,17 @@
 		"type": "AzureSqlTable",
 		"schema": [
 			{
-				"name": "BusinessEntityID",
-				"type": "int",
-				"precision": 10
-			},
-			{
 				"name": "DepartmentID",
 				"type": "smallint",
 				"precision": 5
 			},
 			{
-				"name": "ShiftID",
-				"type": "tinyint",
-				"precision": 3
+				"name": "Name",
+				"type": "nvarchar"
 			},
 			{
-				"name": "StartDate",
-				"type": "date"
-			},
-			{
-				"name": "EndDate",
-				"type": "date"
+				"name": "GroupName",
+				"type": "nvarchar"
 			},
 			{
 				"name": "ModifiedDate",
@@ -40,7 +30,7 @@
 		],
 		"typeProperties": {
 			"schema": "HumanResources",
-			"table": "EmployeeDepartmentHistory"
+			"table": "Department"
 		}
 	}
 }

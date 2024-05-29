@@ -1,12 +1,12 @@
 {
-	"name": "SqlServerTable1",
+	"name": "HrEmployeeTb",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "SqlServer1",
+			"referenceName": "AzureSqlDatabase1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
-		"type": "SqlServerTable",
+		"type": "AzureSqlTable",
 		"schema": [
 			{
 				"name": "BusinessEntityID",
@@ -83,6 +83,5 @@
 			"schema": "HumanResources",
 			"table": "Employee"
 		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+	}
 }

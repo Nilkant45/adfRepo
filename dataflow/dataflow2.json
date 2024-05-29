@@ -1,0 +1,240 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "HrEmployeeTb",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "PersonTb",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "source3"
+				},
+				{
+					"dataset": {
+						"referenceName": "DepartmentTb",
+						"type": "DatasetReference"
+					},
+					"name": "source4"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "sort1"
+				},
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select3"
+				},
+				{
+					"name": "derivedColumn2"
+				},
+				{
+					"name": "select4"
+				},
+				{
+					"name": "join1"
+				},
+				{
+					"name": "select5"
+				},
+				{
+					"name": "select6"
+				},
+				{
+					"name": "join2"
+				},
+				{
+					"name": "select7"
+				},
+				{
+					"name": "join3"
+				},
+				{
+					"name": "select8"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          BusinessEntityID as integer,",
+				"          NationalIDNumber as string,",
+				"          LoginID as string,",
+				"          OrganizationNode as binary,",
+				"          OrganizationLevel as integer,",
+				"          JobTitle as string,",
+				"          BirthDate as date,",
+				"          MaritalStatus as string,",
+				"          Gender as string,",
+				"          HireDate as date,",
+				"          SalariedFlag as boolean,",
+				"          VacationHours as integer,",
+				"          SickLeaveHours as integer,",
+				"          CurrentFlag as boolean,",
+				"          rowguid as string,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source(output(",
+				"          BusinessEntityID as integer,",
+				"          PersonType as string,",
+				"          NameStyle as boolean,",
+				"          Title as string,",
+				"          FirstName as string,",
+				"          MiddleName as string,",
+				"          LastName as string,",
+				"          Suffix as string,",
+				"          EmailPromotion as integer,",
+				"          AdditionalContactInfo as string,",
+				"          Demographics as string,",
+				"          rowguid as string,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source2",
+				"source(output(",
+				"          BusinessEntityID as integer,",
+				"          DepartmentID as integer,",
+				"          ShiftID as integer,",
+				"          StartDate as date,",
+				"          EndDate as date,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source3",
+				"source(output(",
+				"          DepartmentID as integer,",
+				"          Name as string,",
+				"          GroupName as string,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source4",
+				"select3 sort(asc(BirthDate, true),",
+				"     caseInsensitive: true) ~> sort1",
+				"sort1 derive(Age = currentDate()-BirthDate) ~> derivedColumn1",
+				"source1 select(mapColumn(",
+				"          BusinessEntityID,",
+				"          JobTitle,",
+				"          BirthDate,",
+				"          Gender",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select3",
+				"source2 derive({Full Name} = concat(FirstName, MiddleName,LastName)) ~> derivedColumn2",
+				"derivedColumn2 select(mapColumn(",
+				"          BusinessEntityID,",
+				"          {Full Name}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select4",
+				"derivedColumn1, select4 join(select3@BusinessEntityID == select4@BusinessEntityID,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 select(mapColumn(",
+				"          BusinessEntityID = select3@BusinessEntityID,",
+				"          JobTitle,",
+				"          BirthDate,",
+				"          Gender,",
+				"          Age,",
+				"          {Full Name}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select5",
+				"source3 select(mapColumn(",
+				"          BusinessEntityID,",
+				"          DepartmentID",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select6",
+				"select5, select6 join(select5@BusinessEntityID == select6@BusinessEntityID,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join2",
+				"join2 select(mapColumn(",
+				"          BusinessEntityID = select5@BusinessEntityID,",
+				"          JobTitle,",
+				"          BirthDate,",
+				"          Gender,",
+				"          Age,",
+				"          {Full Name},",
+				"          DepartmentID",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select7",
+				"select7, source4 join(select7@DepartmentID == source4@DepartmentID,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join3",
+				"join3 select(mapColumn(",
+				"          BusinessEntityID,",
+				"          JobTitle,",
+				"          BirthDate,",
+				"          Gender,",
+				"          Age,",
+				"          {Full Name},",
+				"          {Department Name} = Name,",
+				"          GroupName",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select8",
+				"select8 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          BusinessEntityID as integer,",
+				"          DepartmentID as integer,",
+				"          ShiftID as integer,",
+				"          StartDate as date,",
+				"          EndDate as date,",
+				"          ModifiedDate as timestamp",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
+			]
+		}
+	}
+}
