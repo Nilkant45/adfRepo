@@ -20,7 +20,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "HrEmployeeHistoryTb",
 						"type": "DatasetReference"
 					},
 					"name": "source3"
