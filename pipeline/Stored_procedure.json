@@ -1,0 +1,46 @@
+{
+	"name": "Stored_procedure",
+	"properties": {
+		"activities": [
+			{
+				"name": "Stored procedure1",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[AddDataWithLog]",
+					"storedProcedureParameters": {
+						"employee_age": {
+							"value": "45",
+							"type": "Int32"
+						},
+						"Employee_salary": {
+							"value": "5000",
+							"type": "Int32"
+						},
+						"EmployeeName": {
+							"value": "nilkant",
+							"type": "String"
+						},
+						"id": {
+							"value": "3",
+							"type": "Int32"
+						}
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "SqlServer2",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": []
+	}
+}
