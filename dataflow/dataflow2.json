@@ -20,7 +20,7 @@
 				},
 				{
 					"dataset": {
-						"referenceName": "DepartmentTb",
+						"referenceName": "AzureSqlTable1",
 						"type": "DatasetReference"
 					},
 					"name": "source3"
@@ -129,9 +129,11 @@
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> source2",
 				"source(output(",
+				"          BusinessEntityID as integer,",
 				"          DepartmentID as integer,",
-				"          Name as string,",
-				"          GroupName as string,",
+				"          ShiftID as integer,",
+				"          StartDate as date,",
+				"          EndDate as date,",
 				"          ModifiedDate as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
@@ -193,7 +195,7 @@
 				"     ignoreSpaces: false,",
 				"     broadcast: 'auto')~> join2",
 				"join2 select(mapColumn(",
-				"          BusinessEntityID,",
+				"          BusinessEntityID = select5@BusinessEntityID,",
 				"          JobTitle,",
 				"          BirthDate,",
 				"          Gender,",
