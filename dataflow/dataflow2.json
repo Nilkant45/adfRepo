@@ -36,7 +36,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "sink2",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -227,14 +227,6 @@
 				"sort2 filter(BusinessEntityID<=50) ~> filter1",
 				"filter1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          BusinessEntityID as integer,",
-				"          DepartmentID as integer,",
-				"          ShiftID as integer,",
-				"          StartDate as date,",
-				"          EndDate as date,",
-				"          ModifiedDate as timestamp",
-				"     ),",
 				"     deletable:false,",
 				"     insertable:true,",
 				"     updateable:false,",
