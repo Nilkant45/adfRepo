@@ -5,8 +5,8 @@
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=adfsqlstorage.database.windows.net;initial catalog=DestinationADF;user id=Nilkant",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI2ZjNjNmViNy1lM2ZiLTQ4OTQtYTM5NS1iM2NmZDE1MDAwMjAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=adfsqlstorage.database.windows.net;initial catalog=DestinationADF;user id=HP",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJjNThkZmViMC0xNTM0LTRlYWQtOGI3YS0xMTRhOTNiZTQ4MjkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "integrationRuntime1",
